@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'firebase_cloud.dart';
 
 /// Base Authentication for Firebase
 ///
@@ -19,6 +20,7 @@ class Authentication<T> extends BaseConfig<T> {
   // Intiallising firebase
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
+  final AddToDatabase add = AddToDatabase();
 
   @override
   Future<String> checkCurrentUser() async {
@@ -61,10 +63,14 @@ class Authentication<T> extends BaseConfig<T> {
 
   @override
   Future<String> signUpUser(
-      {email, password, GlobalKey<ScaffoldState> scaffoldKey}) async {
+      {email,
+      password,
+      GlobalKey<ScaffoldState> scaffoldKey,
+      Map<String, dynamic> info}) async {
     try {
       UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
+     await add.addUser(data: info);
       return userCredential.user.uid;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

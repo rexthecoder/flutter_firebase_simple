@@ -30,7 +30,7 @@ TextFormField textField(
 }
 
 //>>>>>>>>>>>>>> Button Design >>>>>>>>>>>>>>>>>>>//
-Container btnDesign({onPressed}) {
+Container btnDesign({onPressed,text}) {
   return Container(
     margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
     height: 45.0,
@@ -39,8 +39,8 @@ Container btnDesign({onPressed}) {
         color: Color(0xff5662FE),
         onPressed: onPressed,
         child: Text(
-          "LOGIN",
-          style: TextStyle(color: Colors.white),
+          text,
+          style: TextStyle(color: Colors.white, fontSize: 20),
         )),
   );
 }

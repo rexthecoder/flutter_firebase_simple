@@ -48,7 +48,7 @@ class SigninWithEmailAndPassowd extends StatelessWidget {
                           inputController: TextController.passwordController,
                           inputType: TextInputType.emailAddress)),
                 ),
-                btnDesign(onPressed: () => validateAndSubmit())
+                btnDesign(onPressed: () => validateAndSubmit(),text: 'Login')
               ],
             ),
           ),
